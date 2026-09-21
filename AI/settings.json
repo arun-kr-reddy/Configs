@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "read_file(*)",
+      "command(ls)",
+      "command(pwd)",
+      "command(find)",
+      "command(which)",
+      "command(whereis)",
+      "command(cat)",
+      "command(head)",
+      "command(tail)",
+      "command(less)",
+      "command(more)",
+      "command(wc)",
+      "command(file)",
+      "command(stat)",
+      "command(grep)",
+      "command(egrep)",
+      "command(rg)",
+      "command(ag)",
+      "command(ack)",
+      "command(diff)",
+      "command(git diff)",
+      "command(git status)",
+      "command(git log)",
+      "command(git show)",
+      "command(git branch)",
+      "command(git remote -v)",
+      "command(git rev-parse)",
+      "command(echo)",
+      "command(env)",
+      "command(printenv)",
+      "command(date)",
+      "command(uname)"
+    ],
+    "ask": [
+      "command(*)",
+      "write_file(*)"
+    ]
+  }
+}

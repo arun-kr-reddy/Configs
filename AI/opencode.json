@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "google/gemini-flash-latest",
+  "disabled_providers": ["opencode"],
+  "provider": {
+    "google": {
+      "options": {
+        "retry": {
+          "maxRetries": 5,
+          "baseDelayMs": 2000,
+          "maxDelayMs": 30000
+        }
+      }
+    }
+  }
+}
