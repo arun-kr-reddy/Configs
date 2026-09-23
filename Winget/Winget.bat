@@ -18,6 +18,7 @@ winget install --exact --silent --id TheDocumentFoundation.LibreOffice
 winget install --exact --silent --id TorProject.TorBrowser
 winget install --exact --silent --id Valve.Steam
 winget install --exact --silent --id xanderfrangos.twinkletray
+winget install --exact --silent --id ZhornSoftware.Caffeine
 
 REM ============================ Settings ============================
 REM Remove Bing Results From Search
