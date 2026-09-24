@@ -4,12 +4,12 @@ REM ============================ Winget ============================
 REM https://winstall.app/
 winget install --exact --silent --id 7zip.7zip
 winget install --exact --silent --id Git.Git
+winget install --exact --silent --id Google.Chrome
 winget install --exact --silent --id jely2002.youtube-dl-gui
 winget install --exact --silent --id MediaArea.MediaInfo.GUI
 winget install --exact --silent --id Microsoft.PowerShell
 winget install --exact --silent --id Microsoft.VisualStudioCode
 winget install --exact --silent --id Microsoft.WindowsTerminal
-winget install --exact --silent --id Mozilla.Firefox
 winget install --exact --silent --id mpv.net
 winget install --silent MusicBee
 winget install --exact --silent --id qBittorrent.qBittorrent
