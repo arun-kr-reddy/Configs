@@ -5,6 +5,7 @@
   "provider": {
     "google": {
       "options": {
+        "apiKey": "<GEMINI_API_KEY>",
         "retry": {
           "maxRetries": 5,
           "baseDelayMs": 2000,
