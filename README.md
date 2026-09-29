@@ -7,7 +7,7 @@
 
 ## CS2
 - `autoexec.cfg` → `%ProgramFiles(x86)%\Steam\steamapps\common\Counter-Strike Global Offensive\game\csgo\cfg\autoexec.cfg`
-- `cs2_video.txt` → `%ProgramFiles(x86)%\Steam\userdata\<SteamID>\730\local\cfg\`
+- `cs2_video.txt` → `%ProgramFiles(x86)%\Steam\userdata\319543677\730\local\cfg\`
 
 ## MPV
 - `input.conf` → `%USERPROFILE%\AppData\Roaming\mpv.net\`
