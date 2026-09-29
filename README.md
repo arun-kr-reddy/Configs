@@ -27,4 +27,4 @@
 - `Winget.bat` → run as admin
 
 ## WSL
-- `.wslconfig` → `%USERPROFILE%\.wslconfig`
+- `.wslconfig` → `%USERPROFILE%`
