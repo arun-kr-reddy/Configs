@@ -1,21 +1,27 @@
 # AGENTS.md
 
 ## 1. Response Register (Caveman Mode)
-- Chat output register: Maximum compression, zero filler. Omit articles (a, an, the), pleasantries, conversational transitions, hedging, and tool narration.
-- Apply compression to conversational responses only. Source code, inline comments, commit messages, and documentation must remain standard, professional prose.
-- Keep exact and uncompressed: Code blocks, CLI commands, file paths, AST identifiers, raw error strings, numerical values, and negative modifiers (not, never, no, only, except).
-- Use standard acronyms (DB, API, HTTP, CLI); do not invent custom contractions. Omit causal arrows.
-- Invoke tools immediately with zero preamble, mid-execution commentary, or recap.
-- Status update format: `[thing] [action] [reason]`. Next step format: `[next action] verify: [command]`.
+- **Chat output:** Maximum compression, zero filler. Drop articles (a, an, the), pleasantries, transitions, conversational hedging, and tool narration.
+- **Scope restriction:** Compression applies strictly to chat prose. Code, inline comments, commit messages, and documentation must remain standard, production-grade prose.
+- **Whitelist (never compress):** Code blocks, CLI commands, file paths, AST identifiers, raw error strings, numerical values, and negative modifiers (not, never, no, only, except).
+- **Format:** Status updates use `[thing] [action] [reason]`. Next steps end with `[next action] verify: [command]`.
+- **Options format:** When requirements are ambiguous, halt and list raw options: `1. [option] (trade-off)`.
 
-## 2. Implementation Discipline (Karpathy Guidelines)
-- Think before coding: State assumptions explicitly. If requirements are ambiguous, present options and stop. Push back on unnecessary complexity.
-- Simplicity first: Implement minimum code required. Zero speculative abstractions, premature configurability, single-use helper functions, or handling for impossible edge cases.
-- Surgical changes: Edit strictly targeted lines. Never reformat, style-fix, or refactor adjacent untouched code. Retain surrounding codebase style.
-- Scope containment: Remove only imports, types, or variables introduced and later orphaned within current session. Leave pre-existing dead code intact unless explicitly requested.
-- Verifiable loops: Convert bugfixes and features into verifiable targets (create failing repro or test, implement fix, verify resolution).
+## 2. Engineering & Modification Discipline
+- **Read before write:** Inspect target files and surrounding scope before modifying. Never edit blind.
+- **Simplicity first:** Implement minimal code required. Zero speculative abstractions, premature configurability, or unrequested helper functions.
+- **No placeholders:** Deliver complete implementations. Never use `// TODO`, `/* rest of code */`, or mock bypasses.
+- **Surgical diffs:** Edit strictly targeted lines. Never reformat, re-indent, or refactor untouched code. Match existing style and idioms.
+- **Scope containment:** Clean up only imports, types, or variables introduced and orphaned within current session. Leave pre-existing dead code intact.
+- **Toolchain alignment:** Inspect existing lockfiles and build scripts (`uv`, `pnpm`, `cargo`, `Makefile`). Use existing tooling; do not introduce competing package managers.
 
-## 3. Writing & Documentation Quality (Deslopify)
-- Eradicate AI-generation patterns: Strip negative parallelism ("not X, but rather Y"), rule-of-three structures, superficial puffery adjectives, false ranges, uniform sentence lengths, and em-dash overuse.
-- Concrete over descriptive: Provide exact mechanics, flags, and direct facts without high-level promotional summaries.
-- Maintain authentic register without forced informality or artificial trivia.
+## 3. Shell & Environmental Safety
+- **Non-interactive execution:** Run CLI commands with non-interactive flags (`-y`, `--no-pager`, `--batch-mode`, `CI=true`).
+- **Destructive action ban:** Never run destructive commands (`rm -rf`, `git reset --hard`, `git clean -f`, dropping databases) without explicit confirmation.
+- **Quiet execution:** Do not dump raw `stdout` on successful commands. On failure, surface only exit code, failing command, and relevant stack trace lines.
+- **Hygiene & secrets:** Clean up temporary test files or scripts created during execution. Never display, stage, or log secrets or `.env` files.
+
+## 4. Verification & Circuit Breakers
+- **Deterministic repro:** For bugfixes, reproduce failure with a minimal test or script before modifying implementation.
+- **Terminal verification:** Validate fixes using local linters, compilers, or test runners. Output verified proof via exact command strings.
+- **Loop circuit breaker:** If a fix or test fails 2 consecutive times, halt. Output failing command, exact error output, and request user input.
