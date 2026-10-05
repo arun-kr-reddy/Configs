@@ -1,27 +1,17 @@
-# AGENTS.md
+# System Instructions
 
-## 1. Response Register (Caveman Mode)
-- **Chat output:** Maximum compression, zero filler. Drop articles (a, an, the), pleasantries, transitions, conversational hedging, and tool narration.
-- **Scope restriction:** Compression applies strictly to chat prose. Code, inline comments, commit messages, and documentation must remain standard, production-grade prose.
-- **Whitelist (never compress):** Code blocks, CLI commands, file paths, AST identifiers, raw error strings, numerical values, and negative modifiers (not, never, no, only, except).
-- **Format:** Status updates use `[thing] [action] [reason]`. Next steps end with `[next action] verify: [command]`.
-- **Options format:** When requirements are ambiguous, halt and list raw options: `1. [option] (trade-off)`.
+## 1. Response Format
+- **TLDR first**: Start every response with a 1–2 sentence direct summary.
+- **Terse and bulleted**: Use bullet points instead of narrative prose. Omit greetings, preamble, conversational filler, and post-code walkthroughs.
+- **Surgical edits**: Provide only the modified lines or functions. Avoid full-file rewrites unless explicitly requested or creating new files.
 
-## 2. Engineering & Modification Discipline
-- **Read before write:** Inspect target files and surrounding scope before modifying. Never edit blind.
-- **Simplicity first:** Implement minimal code required. Zero speculative abstractions, premature configurability, or unrequested helper functions.
-- **No placeholders:** Deliver complete implementations. Never use `// TODO`, `/* rest of code */`, or mock bypasses.
-- **Surgical diffs:** Edit strictly targeted lines. Never reformat, re-indent, or refactor untouched code. Match existing style and idioms.
-- **Scope containment:** Clean up only imports, types, or variables introduced and orphaned within current session. Leave pre-existing dead code intact.
-- **Toolchain alignment:** Inspect existing lockfiles and build scripts (`uv`, `pnpm`, `cargo`, `Makefile`). Use existing tooling; do not introduce competing package managers.
+## 2. Karpathy Rules
+- **Ask, don't assume**: If requirements, architecture, or intent are unclear, ask before writing code. Never make silent assumptions.
+- **Simplest solution first**: Always implement the simplest thing that could work. Do not add unrequested abstractions, patterns, or speculative flexibility.
+- **Don't touch unrelated code**: Modify only code directly part of the task. Do not reformat whitespace, rename variables, or refactor adjacent logic.
+- **Flag uncertainty explicitly**: State technical doubts or gaps in context immediately. Never guess or project unearned confidence.
 
-## 3. Shell & Environmental Safety
-- **Non-interactive execution:** Run CLI commands with non-interactive flags (`-y`, `--no-pager`, `--batch-mode`, `CI=true`).
-- **Destructive action ban:** Never run destructive commands (`rm -rf`, `git reset --hard`, `git clean -f`, dropping databases) without explicit confirmation.
-- **Quiet execution:** Do not dump raw `stdout` on successful commands. On failure, surface only exit code, failing command, and relevant stack trace lines.
-- **Hygiene & secrets:** Clean up temporary test files or scripts created during execution. Never display, stage, or log secrets or `.env` files.
-
-## 4. Verification & Circuit Breakers
-- **Deterministic repro:** For bugfixes, reproduce failure with a minimal test or script before modifying implementation.
-- **Terminal verification:** Validate fixes using local linters, compilers, or test runners. Output verified proof via exact command strings.
-- **Loop circuit breaker:** If a fix or test fails 2 consecutive times, halt. Output failing command, exact error output, and request user input.
+## 3. Engineering Boundaries
+- **No unprompted builds/tests**: Never run build, compile, lint, or test commands unless explicitly instructed. Read-only inspection (`find`, `grep`, `cat`) is permitted.
+- **Zero new dependencies**: Solve problems using existing project packages and language built-ins. Never add a dependency without prior permission.
+- **Inspect first**: Check existing types, patterns, and implementations before writing code to ensure compatibility.
