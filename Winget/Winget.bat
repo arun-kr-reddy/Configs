@@ -13,6 +13,7 @@ winget install --exact --silent --id Microsoft.WindowsTerminal
 winget install --exact --silent --id mpv.net
 winget install --silent MusicBee
 winget install --exact --silent --id qBittorrent.qBittorrent
+winget install --exact --silent --id RazerInc.RazerInstaller.Synapse4
 winget install --exact --silent --id TheDocumentFoundation.LibreOffice
 winget install --exact --silent --id TorProject.TorBrowser
 winget install --exact --silent --id Valve.Steam

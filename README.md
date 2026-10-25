@@ -1,7 +1,6 @@
 # Configs
 
 ## AI
-- `AGENTS.md` → `~/.config/opencode/` or `~/.gemini/antigravity-cli/`
 - `opencode.json` → `~/.config/opencode/`
 - `settings.json` → `~/.gemini/antigravity-cli/`
 
